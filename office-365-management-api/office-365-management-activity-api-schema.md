@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: 98d84204c71e6efbbe9d94381b9c0d0a048aece0
-ms.sourcegitcommit: 74965766776177e0b75c9099652798dee9bd1998
+ms.openlocfilehash: 632d40cdbcba9db8d960d088500968a34b135732
+ms.sourcegitcommit: c10afafe7e219a4fdeffff12f1d65f3da0f8d5d5
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/07/2021
-ms.locfileid: "60224827"
+ms.lasthandoff: 10/12/2021
+ms.locfileid: "60275442"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Esquema da API da Atividade de Gerenciamento do Office 365
 
@@ -58,6 +58,7 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |[Esquema do Microsoft Forms](#microsoft-forms-schema)|Estende o esquema Comum com as propriedades específicas a todos os eventos do Microsoft Forms.|
 |[Esquema de rótulos MIP](#mip-label-schema)|Estende o esquema comum com as propriedades específicas a rótulos de sensibilidade aplicados manualmente ou automaticamente às mensagens de email.|
 |[Esquema de conformidade de comunicações do Exchange](#communication-compliance-exchange-schema)|Estende o esquema comum com as propriedades específicas para o modelo de linguagem ofensiva de conformidade de comunicações.|
+|[Esquema de relatórios](#reports-schema)|Estende o esquema Comum com as propriedades específicas de todos os eventos de quarentena.|
 |||
 
 ## <a name="common-schema"></a>Esquema Comum
@@ -190,6 +191,7 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |112|MSDEIndicatorsSettings|Eventos relacionados a ações de indicador no Microsoft Defender para Ponto de Extremidade.|
 |113|MS365DCustomDetection|Eventos relacionados a ações de detecção personalizadas no Microsoft 365 Defender.|
 |114|MSDERolesSettings|Eventos relacionados a ações de funções no Microsoft Defender para Ponto de Extremidade.|
+|147|CoreReportingSettings|Relatórios de eventos de configurações.|
 ||||
 
 ### <a name="enum-user-type---type-edmint32"></a>Enumeração: User Type - Tipo: Edm.Int32
@@ -1669,3 +1671,12 @@ Os eventos de conformidade de comunicação listados no log de auditoria do Offi
 | FileType        | Edm.String | A extensão de arquivo do arquivo anexado à mensagem de email.|
 | SHA256          | Edm.String | O hash SHA-256 do arquivo anexado à mensagem de email.|
 ||||
+
+## <a name="reports-schema"></a>Esquema de relatórios
+
+Os eventos de quarentena listados em [Pesquisar o log de auditoria no Centro de Segurança e Conformidade do Office 365](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#reports-activities) usarão este esquema.
+
+|**Parameters**  |**Tipo**|**Obrigatório?** |**Descrição**|
+|:---------------|:-------|:--------------|:--------------|
+| ModifiedProperties | Coleção (Common.ModifiedProperty) | Não | Essa propriedade inclui o nome da propriedade que foi modificada, o novo valor da propriedade modificada e o valor anterior da propriedade modificada.|
+|||||
