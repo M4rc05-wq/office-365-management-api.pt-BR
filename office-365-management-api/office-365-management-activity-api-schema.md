@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: 632d40cdbcba9db8d960d088500968a34b135732
-ms.sourcegitcommit: c10afafe7e219a4fdeffff12f1d65f3da0f8d5d5
+ms.openlocfilehash: 3beb3082401d6afc01311e9002653e51646025b5
+ms.sourcegitcommit: 3923c26343e0dbaf6783f6c0d0f13386c9be2b3c
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/12/2021
-ms.locfileid: "60275442"
+ms.lasthandoff: 10/19/2021
+ms.locfileid: "60478457"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Esquema da API da Atividade de Gerenciamento do Office 365
 
@@ -316,10 +316,10 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |FilePreviewed|O usuário visualiza um documento em um site do SharePoint ou OneDrive for Business.|
 |FileRenamed|O usuário renomeia um documento em um site do SharePoint ou OneDrive for Business.|
 |FileRestored|O usuário restaura um documento da lixeira de um site do SharePoint ou OneDrive for Business. |
-|FileSyncDownloadedFull|O usuário estabelece um relacionamento de sincronização e faz download dos arquivos com êxito pela primeira vez em seu computador a partir de uma biblioteca de documentos do SharePoint ou do OneDrive for Business.|
-|FileSyncDownloadedPartial|O usuário baixa com sucesso quaisquer alterações em arquivos da biblioteca de documentos do Microsoft Office SharePoint Online ou OneDrive for Business. Esse evento indica que todas as alterações feitas nos arquivos da biblioteca de documentos foram baixadas para o computador do usuário. Apenas as alterações foram baixadas porque a biblioteca de documentos foi previamente baixada pelo usuário (conforme indicado pelo FileSyncDow|
-|FileSyncUploadedFull|O usuário estabelece um relacionamento de sincronização e faz upload dos arquivos com êxito pela primeira vez do seu computador para uma biblioteca de documentos do SharePoint ou do OneDrive for Business.|
-|FileSyncUploadedPartial|O usuário carrega com sucesso as alterações de arquivos em uma biblioteca de documentos do Microsoft Office SharePoint Online ou OneDrive for Business. Este evento indica que todas as alterações feitas na versão local de um arquivo de uma biblioteca de documentos foram carregadas com sucesso  para a biblioteca de documentos. Somente as alterações são descarregadas porque esses arquivos foram previamente carregados pelo usuário (conforme indicado pelo evento FileSyncUploadedFull).|
+|FileSyncDownloadedFull|O usuário baixa um arquivo em seu computador de uma biblioteca de documentos do SharePoint ou do OneDrive for Business usando o aplicativo de sincronização do OneDrive (OneDrive.exe).|
+|FileSyncDownloadedPartial|Esse evento foi preterido juntamente com o aplicativo de sincronização do OneDrive for Business antigo (Groove.exe).|
+|FileSyncUploadedFull|O usuário carrega um novo arquivo ou alterações em um arquivo na biblioteca de documentos do SharePoint ou do OneDrive for Business usando o aplicativo de sincronização do OneDrive (OneDrive.exe).|
+|FileSyncUploadedPartial|Esse evento foi preterido juntamente com o aplicativo de sincronização do OneDrive for Business antigo (Groove.exe).|
 |FileUploaded|O usuário faz upload de um documento para uma pasta em um site do SharePoint ou do OneDrive for Business. |
 |FileViewed|Este evento foi substituído pelo evento FileAccessed e foi descontinuado.|
 |FolderCopied|O usuário copia uma pasta de um site do SharePoint ou do OneDrive for Business para outro local no SharePoint ou no OneDrive for Business.|
