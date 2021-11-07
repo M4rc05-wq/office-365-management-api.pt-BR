@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: 3beb3082401d6afc01311e9002653e51646025b5
-ms.sourcegitcommit: 3923c26343e0dbaf6783f6c0d0f13386c9be2b3c
+ms.openlocfilehash: 6e5388fc25d079a0dcda289d75d45b4404bfe4e0
+ms.sourcegitcommit: 1221b3c59f27209330142bc2b6db1b95dd28ef11
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/19/2021
-ms.locfileid: "60478457"
+ms.lasthandoff: 11/05/2021
+ms.locfileid: "60795598"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Esquema da API da Atividade de Gerenciamento do Office 365
 
@@ -91,7 +91,7 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |1|ExchangeAdmin|Eventos do log de auditoria do administrador do Exchange.|
 |2|ExchangeItem|Eventos de um log de auditoria de caixa de correio do Exchange para ações executadas em um único item, como criar ou receber uma mensagem de email.|
 |3|ExchangeItemGroup|Eventos de um log de auditoria de caixa de correio do Exchange para ações que podem ser executadas em vários itens, como mover ou excluir uma ou mais mensagens de email.|
-|4 |SharePoint|Eventos do SharePoint.|
+|4|SharePoint|Eventos do SharePoint.|
 |6 |SharePointFileOperation|Eventos de operação de arquivos do SharePoint.|
 |7 |OneDrive|Eventos do OneDrive for Business.|
 |8 |AzureActiveDirectory|Eventos do Azure Active Directory.|
@@ -159,7 +159,6 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |73|MicrosoftTeamsShifts|Eventos de Turnos do Teams.|
 |75|MipAutoLabelExchangeItem|Eventos de rotulagem automática no Exchange.|
 |76|CortanaBriefing|Resumo dos eventos por email.|
-|77|Pesquisar|Eventos relacionados à realização de consultas de pesquisa no Microsoft Office SharePoint Online e no Exchange.|
 |78|WDATPAlerts|Eventos relacionados a alertas gerados pelo Windows Defender para Endpoint.|
 |82|SensitivityLabelPolicyMatch|Eventos gerados quando o arquivo rotulado com um rótulo de confidencialidade é aberto ou renomeado.|
 |83|SensitivityLabelAction|Evento gerado quando rótulos de sensibilidade são aplicados, atualizados ou removidos de um arquivo.|
@@ -204,7 +203,7 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |1|Reserved|Um usuário reservado.|
 |2|Admin|Um administrador.|
 |3|DcAdmin|Um operador de datacenter da Microsoft.|
-|4 |System|Uma conta do sistema.|
+|4|System|Uma conta do sistema.|
 |5|Application|Um aplicativo.|
 |6 |ServicePrincipal|Uma entidade de serviço.|
 |7 |CustomPolicy|Uma política personalizada.|
@@ -577,7 +576,7 @@ Os eventos do SharePoint listados em [Pesquisar o log de auditoria do centro de 
 |1|Admin|Uma pessoa com privilégios administrativos para a caixa de correio de uma pessoa.|
 |2|Delegated|Uma pessoa com privilégios de delegado para a caixa de correio de uma pessoa.|
 |3|Transport|Um serviço de transporte no datacenter da Microsoft.|
-|4 |SystemService|Uma conta de serviço no datacenter da Microsoft.|
+|4|SystemService|Uma conta de serviço no datacenter da Microsoft.|
 |5|BestAccess|Reservado para uso interno.|
 |6 |DelegatedAdmin|Um administrador delegado.|
 |||||
@@ -665,7 +664,7 @@ Os eventos do SharePoint listados em [Pesquisar o log de auditoria do centro de 
 |1|MobilePhone|A credencial do usuários é o telefone celular.|
 |2|SecretQuestion|A credencial do usuário é a pergunta secreta.|
 |3|SecurePin|A credencial do usuário é um PIN seguro.|
-|4 |SecurePinReset|A credencial do usuário é a redefinição do PIN seguro.|
+|4|SecurePinReset|A credencial do usuário é a redefinição do PIN seguro.|
 |11|EasyID|A credencial do usuário é EasyID.|
 |14 |PasswordIndexCredentialType|A credencial do usuário é PasswordIndexCredentialType.|
 |16|Device|A credencial do usuário é um dispositivo.|
@@ -690,7 +689,7 @@ Os eventos do SharePoint listados em [Pesquisar o log de auditoria do centro de 
 |1|Password|O método de autenticação é uma senha.|
 |2|Digest|O método de autenticação é um resumo.|
 |3|ProxyAuth|O método de autenticação é um ProxyAuth.|
-|4 |InfoCard|O método de autenticação é um InfoCard.|
+|4|InfoCard|O método de autenticação é um InfoCard.|
 |5|DAToken|O método de autenticação é um DAToken.|
 |6 |Sha1RememberMyPassword|O método de autenticação é um Sha1RememberMyPassword.|
 |7 |LMPasswordHash|O método de autenticação é um LMPasswordHash.|
@@ -1204,7 +1203,7 @@ Os eventos do Yammer listados em [Pesquisar no log de auditoria no Centro de Con
 |1|Anti-spam, HSPM|Ação de HSPM (Spam de Alta Confiança) na política anti-spam.|
 |2|Anti-spam, SPM|Ação de Spam (SPM) na política anti-spam.|
 |3|Anti-spam, em massa|Ação em massa na política anti-spam.|
-|4 |Anti-spam, PHSH|Ação de PHSH (phishing) na política anti-spam.|
+|4|Anti-spam, PHSH|Ação de PHSH (phishing) na política anti-spam.|
 |5|Anti-phishing, DIMP|Ação de Representação de Domínio (DIMP) na política anti-phishing.|
 |6 |Anti-phishing, UIMP|Ação de Representação de Usuários (UIMP) na política anti-phishing.|
 |7 |Anti-phishing, SPOOF|Ação falsa na política anti-phishing.|
@@ -1229,7 +1228,7 @@ Os eventos do Yammer listados em [Pesquisar no log de auditoria no Centro de Con
 |1|AddXHeader|A ação de política é adicionar o cabeçalho X à mensagem de email.|
 |2|ModifySubject|A ação de política é modificar o assunto na mensagem de email com as informações especificadas pela política de filtragem.|
 |3|Redirecionamento|A ação de política é redirecionar a mensagem de email para o endereço de email especificado pela política de filtragem.|
-|4 |Excluir|A ação de política é excluir (descartar) a mensagem de email.|
+|4|Excluir|A ação de política é excluir (descartar) a mensagem de email.|
 |5|Quarentena|A ação de política é colocar a mensagem de email em quarentena.|
 |6 |NoAction| A política está configurada para não executar nenhuma ação na mensagem de email.|
 |7 |BccMessage|A ação de política é Cco a mensagem de email para o endereço de email especificado pela política de filtragem.|
@@ -1257,7 +1256,7 @@ Os eventos do Yammer listados em [Pesquisar no log de auditoria no Centro de Con
 |:-----|:-----|:-----|
 |2|Blockpage|Usuário impedido de navegar para o URL pelo serviço [Links Seguros no Defender para Office 365](/office365/securitycompliance/atp-safe-links).|
 |3|PendingDetonationPage|É apresentado ao Usuário uma página de detonação pendente pelo serviço [Links Seguros no Defender para o Office 365](/office365/securitycompliance/atp-safe-links).|
-|4 |BlockPageOverride|O usuário é impedido de navegar para o URL pelo serviço [Links Seguros no Defender para Office 365](/office365/securitycompliance/atp-safe-links); entretanto, o usuário ultrapassa o bloqueio para navegar para a URL|
+|4|BlockPageOverride|O usuário é impedido de navegar para o URL pelo serviço [Links Seguros no Defender para Office 365](/office365/securitycompliance/atp-safe-links); entretanto, o usuário ultrapassa o bloqueio para navegar para a URL|
 |5|PendingDetonationPageOverride|É apresentado ao Usuário uma página de detonação pelo serviço [Links Seguros no Defender para o Office 365](/office365/securitycompliance/atp-safe-links); entretanto, o usuário ultrapassa  o bloqueio para navegar até o URL.|
 |||||
 
@@ -1564,7 +1563,7 @@ Os eventos de quarentena listados em [Pesquisar o log de auditoria no Centro de 
 |1|Excluir|Esta é uma solicitação de um usuário para excluir uma mensagem de email considerada prejudicial.|
 |2|Liberar|Esta é uma solicitação de um usuário para liberar uma mensagem de email considerada prejudicial.|
 |3|Exportar|Esta é uma solicitação de um usuário para exportar uma mensagem de email considerada prejudicial.|
-|4 |ViewHeader|Esta é uma solicitação de um usuário para exibir o cabeçalho de uma mensagem de email considerada prejudicial.|
+|4|ViewHeader|Esta é uma solicitação de um usuário para exibir o cabeçalho de uma mensagem de email considerada prejudicial.|
 |5|Solicitação de liberação|Esta é uma solicitação de liberação de um usuário para liberar uma mensagem de email considerada prejudicial.|
 ||||
 
