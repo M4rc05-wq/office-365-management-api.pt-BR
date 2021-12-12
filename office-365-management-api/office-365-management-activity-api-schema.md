@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: 6e5388fc25d079a0dcda289d75d45b4404bfe4e0
-ms.sourcegitcommit: 1221b3c59f27209330142bc2b6db1b95dd28ef11
+ms.openlocfilehash: 6e47805e45ca49f8a8d280dba618a8add3add0e6
+ms.sourcegitcommit: 07ba58c25da8ab9a61fb1abeecba95b549e64dd0
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/05/2021
-ms.locfileid: "60795598"
+ms.lasthandoff: 12/11/2021
+ms.locfileid: "61416105"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Esquema da API da Atividade de Gerenciamento do Office 365
 
@@ -80,6 +80,7 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |UserId|Edm.string|Sim|O UPN (User Principal Name) do usuário que executou a ação (especificado na propriedade Operation) que resultou no registro sendo registrado; por exemplo, `my_name@my_domain_name`. Observe que os registros da atividade executada pelas contas do sistema (como SHAREPOINT\system ou NT AUTHORITY\SYSTEM) também são incluídos. No SharePoint, outro valor exibido na propriedade UserId é app@sharepoint. Isso indica que o "usuário" recebeu permissões no SharePoint para executar ações em toda a organização (como pesquisar em um site do SharePoint ou em uma conta do OneDrive) em nome de um usuário, administrador ou serviço. Para saber mais, confira o [app@sharepoint usuário nos registros de auditoria](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records). |
 |ClientIP|Edm.String|Sim|O endereço IP do dispositivo que foi usado quando a atividade foi registrada. O endereço IP é exibido em um formato de endereço IPv4 ou IPv6.<br/><br/>Para alguns serviços, o valor exibido nessa propriedade pode ser o endereço IP de um aplicativo confiável (por exemplo, Office em aplicativos Web) chamando o serviço em nome de um usuário e não o endereço IP do dispositivo usado por quem realizou a atividade. <br/><br/>Além disso, para eventos relacionados ao Azure Active Directory, o endereço IP não é registrado e o valor da propriedade ClientIP é `null`.|
 |Escopo|Self.[AuditLogScope](#auditlogscope)|Não|Esse evento foi criado por um serviço hospedado do O365 ou por um servidor local? Os valores possíveis são **online** e **onprem**. Observe que o SharePoint é a única carga de trabalho enviando eventos do local para o O365 atualmente.|
+|AppAccessContext|CollectionSelf.[AppAccessContext](#complex-type-appaccesscontext)|Não|O contexto do aplicativo para o usuário ou principal de serviço que executou a ação.|
 |||||
 
 ### <a name="enum-auditlogrecordtype---type-edmint32"></a>Enumeração: AuditLogRecordType - Tipo: Edm.Int32
@@ -219,6 +220,17 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |0|Online|Este evento foi criado por um serviço hospedado no O365.|
 |1|Onprem|Este evento foi criado por um servidor local.|
 ||||
+
+### <a name="complex-type-appaccesscontext"></a>Tipo complexo AppAccessContext
+
+|**Parameters**|**Tipo**|**Obrigatório?**|**Descrição**|
+|:-----|:-----|:-----|:-----|
+|AADSessionId|Edm.String|Não|O SessionId do Azure Active Directory (AAD) do logon do AAD que foi executado pelo aplicativo em nome do usuário.|
+|APIId|Edm.String|Não|O Id para o caminho da API que é usado para acessar o recurso; por exemplo, acesso por meio da API do Microsoft Graph.|
+|ClientAppId|Edm.String|Não|A ID do aplicativo do AAD que executou o acesso em nome do usuário.|
+|ClientAppName|Edm.String|Não|O nome do aplicativo AAD que realizou o acesso em nome do usuário.|
+|CorrelationId|Edm.String|Não|Um identificador que pode ser usado para correlacionar as ações de um usuário específico entre Microsoft 365 serviços.|
+|||||
 
 ## <a name="sharepoint-base-schema"></a>Esquema base do SharePoint
 
