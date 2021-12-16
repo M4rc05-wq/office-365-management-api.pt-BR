@@ -7,12 +7,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: a5bceab7d18553824b604609d71c50a05f4d65d6
-ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
+ms.openlocfilehash: ade07767024abaa4db15de9b1822a3c72d19146e
+ms.sourcegitcommit: 94b0c0d30c07d510ee3686ca02ab16ddd0af35db
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/25/2021
-ms.locfileid: "58510150"
+ms.lasthandoff: 12/15/2021
+ms.locfileid: "61521140"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Perguntas frequentes e Soluções de problemas da API da Atividade de Gestão do Office 365
 
@@ -100,9 +100,13 @@ As seções a seguir resumem as perguntas mais comuns que os clientes fazem ao u
 
 - [Como criar uma nova assinatura](#creating-a-new-subscription)
 
+- [Como verificar a disponibilidade do conteúdo](#checking-content-availability)
+
 - [Como usar webhooks](#using-webhooks)
 
 - [Como solicitar blobs de conteúdo e limitação](#requesting-content-blobs-and-throttling)
+
+- [Marcas de serviço](#service-tags)
 
 Mostraremos uma seleção de scripts simples do Windows PowerShell que podem ajudá-lo a responder às perguntas mais comuns feitas por clientes ou ajudar você a começar a implementar uma solução personalizada demonstrando as operações principais. Nem todas as operações são explicadas neste artigo, mas estão listadas na referência da API da Atividade de Gestão do Office 365.
 
@@ -226,9 +230,9 @@ Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://<YOUR_API_EN
 
 O código anterior criará uma nova assinatura para o tipo de conteúdo Audit.AzureActiveDirectory, com um webhook nulo. Em seguida, você pode verificar suas assinaturas usando o código na seção [Como verificar suas assinaturas](#checking-your-subscriptions) deste artigo.
 
-## <a name="checking-content-availability"></a>Como verificar a disponibilidade do conteúdo
+### <a name="checking-content-availability"></a>Como verificar a disponibilidade do conteúdo
 
-Para verificar quais blobs de conteúdo foram criados durante um determinado período, adicione a seguinte linha ao script na seção "Como conectar-se com a API".
+Para verificar quais blobs de conteúdo foram criados durante um determinado período, você pode adicionar a seguinte linha ao script na seção "Como conectar-se com a API".
 
 ```powershell
 Invoke-WebRequest -Method GET -Headers $headerParams -Uri "$resource/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint"
@@ -343,3 +347,52 @@ $contents = Invoke-WebRequest -Method GET -Headers $headerParams -Uri $uri
 ```
 
 O exemplo anterior pressupõe que a variável *$response* foi preenchida com a resposta a uma solicitação para o ponto de extremidade /content e que a variável *$headerParams* inclui um token de acesso válido. O script utiliza o primeiro item na matriz de URIs de conteúdo da resposta e invoca GET para fazer o download desse blog e colocá-lo na variável *$contents*. O código provavelmente percorrerá a coleção contentUri emitindo o GET para cada *contentUri*.
+
+### <a name="service-tags"></a>Marcas de serviço
+
+A API da Atividade de Gestão do Office 365 e o Webhook da API de Atividade de Gerenciamento do Office 365 agora dão suporte [marcas de serviço](/azure/virtual-network/service-tags-overview) para localizar os prefixos de endereço IP necessários que precisam ser permitidos por meio do firewall. Uma marca de serviço representa um grupo predefinido de prefixos de endereço IP gerenciados e atualizados pela Microsoft. As marcas de serviço ajudam a minimizar a complexidade da criação de regras de segurança.
+
+As seguintes marcas de serviço incluem os prefixos de endereço IP que dão suporte à API da Atividade de Gestão do Office 365 e ao Webhook da API da Atividade de Gestão do Office 365:
+
+- M365ManagementActivityApi
+
+- M365ManagementActivityApiWebhook
+
+Para obter uma lista dos prefixos de endereço IP abrangidos por etiquetas de serviço anteriores, baixe um dos seguintes arquivos:
+
+- [Intervalos IP e Tags de Serviço do Microsoft Azure – Nuvem Pública](https://www.microsoft.com/download/details.aspx?id=56519)
+
+- [Intervalos IP e Tags de Serviço do Microsoft Azure – Nuvem do Governo dos EUA](https://www.microsoft.com/download/details.aspx?id=57063)
+
+- [Intervalos IP e Tags de Serviço do Microsoft Azure – Nuvem da China](https://www.microsoft.com/download/details.aspx?id=57062)
+
+Depois de baixar o arquivo apropriado, procure as strings "M365ManagementActivityApi" e "M365ManagementActivityApiWebhook" para encontrar a seção que contém os prefixos de endereço IP para cada etiqueta de serviço.
+
+#### <a name="configuring-service-tags-for-network-security-groups"></a>Configurando etiquetas de serviço para grupos de segurança de rede
+
+Você pode usar os cmdlets Az ou AzureRM PowerShell para definir a regra de grupo de segurança de rede com marca de serviço. Você pode configurar regras de grupo de segurança com etiquetas de serviço e, em seguida, adicionar essas regras a um novo grupo de segurança de rede. Alguns recursos, como Azure Functions, também fornecem uma opção de marca de serviço para configurar grupos de segurança de rede usando o portal do Azure
+
+Para obter informações sobre como usar Az ou AzureRM PowerShell para configurar regras de segurança de rede e grupos de segurança de rede, consulte:
+
+- [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig)
+
+- [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup)
+
+- [New-AzNetworkSecurityRuleConfig](/powershell/module/az.network/new-aznetworksecurityruleconfig)
+
+- [New-AzNetworkSecurityGroup](/powershell/module/az.network/new-aznetworksecuritygroup)
+
+Aqui está um exemplo de script AzureRM PowerShell que restringe o tráfego de saída a todos os prefixos de endereço IP, exceto aqueles incluídos na marca de serviço M365ManagementActivityApi. O script de exemplo cria duas regras de grupo de segurança de rede de saída. O primeiro permite o tráfego de saída para os prefixos de endereço IP incluídos na etiqueta de serviço M365ManagementActivityApi. O segundo nega o tráfego de saída para a Internet. As regras são então adicionadas a um grupo de segurança de rede, que pode então ser configurado para serviços específicos do Azure.
+
+```powershell
+$allowMyServiceRule = New-AzureRmNetworkSecurityRuleConfig ` -Name "AllowMyService"  -Access Allow  -Protocol Tcp  -Direction Outbound  -Priority 100 -DestinationAddressPrefix M365ManagementActivityApi  -SourcePortRange * -SourceAddressPrefix * -DestinationPortRange *
+$denyInternetRule = New-AzureRmNetworkSecurityRuleConfig -Name "denyInternetOut" -Access Deny `
+-Protocol Tcp -Direction Outbound  -Priority 4000 -DestinationAddressPrefix Internet -SourcePortRange * -SourceAddressPrefix * -DestinationPortRange *
+$nsg = New-AzureRmNetworkSecurityGroup `
+-ResourceGroupName $resourceGroupName `
+-Location $location `
+-Name $nsgName `
+-SecurityRules $denyInternetRule,$allowMyServiceRule
+```
+
+Uma regra de entrada para aceitar tráfego apenas de M365ManagementActivityApiWebhook pode ser configurada de maneira semelhante.
