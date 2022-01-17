@@ -7,17 +7,17 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: 32a1304006d81f5d37deedb369dd63ae41da24a9
-ms.sourcegitcommit: 6becab1db19ca810b10a3563a5e4c9dd097aa6ae
+ms.openlocfilehash: 735a238b464d39eaaf1eaeade41d67bcb8a2459b
+ms.sourcegitcommit: 3f0410d4915b1dcc8872b1cbbe05cb265eea87ff
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/24/2021
-ms.locfileid: "58506192"
+ms.lasthandoff: 01/15/2022
+ms.locfileid: "62054727"
 ---
 # <a name="office-365-service-communications-api-reference"></a>Referência da API de Comunicações de Serviço do Office 365
 
 > [!IMPORTANT]
-> A API de integridade e comunicações no Microsoft Graph serviço já está disponível. A API do Microsoft Graph substitui a API de Comunicações de Serviço documentada neste artigo. Desativaremos a versão herdada da API de Comunicações de Serviço a partir de 17 de dezembro de 2021. Para obter mais informações sobre a nova API do Microsoft Graph, consulte [Visão geral para acessar a integridade do serviço e as comunicações por meio do Microsoft Graph](/graph/service-communications-concept-overview).
+> A versão herdada da API de comunicações de serviço documentada neste artigo foi desativada. A API de integridade e comunicações do serviço no Microsoft Graph já está disponível e substitui a API de comunicações do serviço. Para obter mais informações sobre a nova API do Microsoft Graph, consulte [Visão geral para acessar a integridade do serviço e as comunicações por meio do Microsoft Graph](/graph/service-communications-concept-overview).
 
 Você pode usar o API de Comunicações do Serviço do Office 365 V2 para acessar os seguintes dados:
 
