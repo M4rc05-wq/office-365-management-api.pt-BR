@@ -7,12 +7,12 @@ ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: ba8913806f13719e0851ea5a3574ac7847ab35f5
-ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
+ms.openlocfilehash: b14820bb3970e1670e2828d73b18673bc5c51e54
+ms.sourcegitcommit: c664ee51dfc7d4663e92883af3f0fec0e9af11c8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/25/2021
-ms.locfileid: "58510135"
+ms.lasthandoff: 01/25/2022
+ms.locfileid: "62202219"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Referência da API da Atividade de Gerenciamento do Office 365
 
@@ -595,7 +595,7 @@ As organizações que acessam logs de auditoria por meio da API da Atividade de 
 
 Estamos migrando do limite no nível do editor para um limite no nível do locatário. O resultado é que todas as organizações terão sua própria cota de largura de banda totalmente alocada para acessar os dados de auditoria. Todas as organizações alocam inicialmente uma linha de base de 2.000 solicitações por minuto. Esse não é um limite estático e predefinido, mas está modelado em uma combinação de fatores, incluindo o número de assentos da organização e que as organizações do Office 365 e do Microsoft 365 E5 terão aproximadamente o dobro de largura de banda quanto organizações que não são do E5. Também haverá limite máximo quanto à largura de banda para proteger a integridade do serviço.
 
-Para saber mais, confira a seção "acesso de largura de banda alta à API da Atividade de Gestão do Office 365" em [Auditoria avançada no Microsoft 365](/compliance/advanced-audit#high-bandwidth-access-to-the-office-365-management-activity-api).
+Para saber mais, confira a seção "acesso de largura de banda alta à API da Atividade de Gestão do Office 365" em [Auditoria avançada no Microsoft 365](/microsoft-365/compliance/advanced-audit#high-bandwidth-access-to-the-office-365-management-activity-api).
 
 > [!NOTE] 
 > Embora cada locatário possa enviar inicialmente até 2 mil solicitações por minuto, a Microsoft não pode garantir uma taxa de resposta. A taxa de resposta depende de vários fatores, como o desempenho do sistema do cliente, a capacidade e a velocidade da rede. 
