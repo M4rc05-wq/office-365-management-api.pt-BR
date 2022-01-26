@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: 6e47805e45ca49f8a8d280dba618a8add3add0e6
-ms.sourcegitcommit: 07ba58c25da8ab9a61fb1abeecba95b549e64dd0
+ms.openlocfilehash: 7e605be800b8573e2b7be49c50ecd843d1ed8fb3
+ms.sourcegitcommit: c664ee51dfc7d4663e92883af3f0fec0e9af11c8
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/11/2021
-ms.locfileid: "61416105"
+ms.lasthandoff: 01/25/2022
+ms.locfileid: "62202226"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Esquema da API da Atividade de Gerenciamento do Office 365
 
@@ -31,6 +31,7 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |[Esquema Comum](#common-schema)|O modo de exibição para extrair o Tipo de registro, ID de usuário, IP do cliente, Tipo de usuário e Ação junto com as dimensões principais, como propriedades do usuário (como UserID), propriedades do local (como IP do cliente) e propriedades específicas do serviço (como ID de objeto).|
 |[Esquema Base do SharePoint](#sharepoint-base-schema)|Estende o esquema Comum com as propriedades específicas de todos os dados de auditoria do SharePoint.|
 |[Operações de Arquivos do SharePoint](#sharepoint-file-operations)|Estende o esquema Base do SharePoint com as propriedades específicas do acesso e manipulação de arquivos no SharePoint.|
+|[Listar Operações do Sharepoint](#sharepoint-list-operations)|Estende o esquema Base do SharePoint com as propriedades específicas para interações com listas e itens de lista no SharePoint Online.|
 |[Esquema de compartilhamento do SharePoint](#sharepoint-sharing-schema)|Estende o esquema Base do SharePoint com as propriedades específicas do compartilhamento de arquivos.|
 |[Esquema do SharePoint](#sharepoint-schema)|Estende o esquema Base do SharePoint com as propriedades específicas do SharePoint, mas não está relacionado ao acesso e manipulação de arquivos.|
 |[Esquema do Project](#project-schema)|Estende o esquema Base do SharePoint com as propriedades específicas do Project.|
@@ -243,6 +244,11 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |UserAgent|Edm.String|Não|Informações sobre o cliente ou navegador do usuário. Esta informação é fornecida pelo cliente ou navegador.|
 |MachineDomainInfo|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|Não|Informações sobre as operações de sincronização do dispositivo. Essas informações são relatadas apenas se estiverem presentes na solicitação.|
 |MachineId|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|Não|Informações sobre as operações de sincronização do dispositivo. Essas informações são relatadas apenas se estiverem presentes na solicitação.|
+|ListItemUniqueId|Edm.Guid|Não|O GUID de um item de lista exclusivamente identificável. Esta informação está presente apenas se for aplicável.|
+|ListId|Edm.Guid|Não|O GUID da lista. Esta informação está presente apenas se for aplicável.|
+|ApplicationId|Edm.String|Não|O ID do aplicativo que está executando a operação.|
+|ApplicationDisplayName|Edm.String|Não|O nome de exibição do aplicativo que está executando a operação.|
+|IsWorkflow|Edm.Boolean|Não|Isso está definido como `True` se os Fluxos de Trabalho do SharePoint dispararem o evento auditado.|
 |||||
 
 ### <a name="enum-itemtype---type-edmint32"></a>Enumeração: ItemType - Tipo: Edm.Int32
@@ -429,7 +435,7 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 
 ## <a name="sharepoint-file-operations"></a>Operações de arquivos do SharePoint
 
-Os eventos do SharePoint relacionados a arquivos listados na seção "Atividades de arquivos e pastas" em [Pesquisar o log de auditoria do centro de conformidade e segurança](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance) usam este esquema.
+Os eventos do SharePoint relacionados aos arquivos listados na seção “Atividades de arquivos e pastas” em [Pesquisar o log de auditoria no centro de conformidade](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#file-and-page-activities) usam esse esquema.
 
 |**Parâmetro**|**Tipo**|**Obrigatório?**|**Descrição**|
 |:-----|:-----|:-----|:-----|
@@ -442,23 +448,46 @@ Os eventos do SharePoint relacionados a arquivos listados na seção "Atividades
 |DestinationFileExtension|Edm.String|Não|A extensão de um arquivo que foi copiado ou movido. Essa propriedade é exibida apenas para eventos FileCopied e FileMoved.|
 |UserSharedWith|Edm.String|Não|O usuário com o qual um recurso foi compartilhado.|
 |SharingType|Edm.String|Não|O tipo de permissões de compartilhamento que foram designadas ao usuário com o qual o recurso foi compartilhado. Este usuário é identificado pelo parâmetro _UserSharedWith_.|
+|SourceLabel|Edm.String|Não|O rótulo original do arquivo antes de ser alterado por uma ação do usuário.|
+|DestinationLabel|Edm.String|Não|O rótulo final do arquivo depois que ele é alterado por uma ação do usuário.|
+|SensitivityLabelOwnerEmail|Edm.String|Não|O endereço de email do proprietário do rótulo de confidencialidade.|
+|SensitivityLabelId|Edm.String|Não|A ID do rótulo de confidencialidade atual do arquivo.|
+|||||
+
+## <a name="sharepoint-list-operations"></a>Listar Operações do SharePoint
+
+As listas do SharePoint e os eventos relacionados a itens de lista listados na seção "Atividades de lista do SharePoint" em [Pesquisar o log de auditoria no centro de conformidade](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#sharepoint-list-activities) usam esse esquema.
+
+|**Parâmetro**|**Tipo**|**Obrigatório?**|**Descrição**|
+|:-----|:-----|:-----|:-----|
+|ListTitle|Edm.String|Não|O título da lista de SharePoint.|
+|ListName|Edm.String|Não|O nome da lista do SharePoint.|
+|ListUrl|Edm.String|Não|O URL da lista em relação ao site que o contém.|
+|ListBaseType|Edm.String|Não|Especifica o tipo base para uma lista.|
+|ListBaseTemplateType|Edm.String|Não|O tipo de definição de lista no qual a lista se baseia.|
+|IsHiddenList|Edm.Boolean|Não|Esse valor será definido para `True` se a lista do SharePoint estiver oculta.|
+|IsDocLib|Edm.Boolean|Não|Este valor está definido como `True` se a lista do SharePoint for do tipo Biblioteca de Documentos.|
 |||||
 
 ## <a name="sharepoint-sharing-schema"></a>Esquema de compartilhamento do SharePoint
 
- Os eventos do SharePoint relacionados ao compartilhamento de arquivos. Eles são diferentes dos eventos relacionados a arquivos e pastas em que um usuário está realizando uma ação que afeta outro usuário. Para obter informações sobre o esquema de compartilhamento do SharePoint, confira [Usar a auditoria de compartilhamento no log de auditoria do Office 365g](/microsoft-365/compliance/use-sharing-auditing
-).
+ Os eventos do SharePoint relacionados ao compartilhamento de arquivos. Eles são diferentes dos eventos relacionados a arquivos e pastas em que um usuário está realizando uma ação que afeta outro usuário. Para obter informações sobre o esquema de compartilhamento do SharePoint, consulte [Usar a auditoria de compartilhamento no log de auditoria ](/microsoft-365/compliance/use-sharing-auditing).
 
 |**Parâmetro**|**Tipo**|**Obrigatório?**|**Descrição**|
 |:-----|:-----|:-----|:-----|
 |TargetUserOrGroupName |Edm.String|Não|Armazena o UPN ou o nome do usuário ou grupo de destino com o qual um recurso foi compartilhado.|
 |TargetUserOrGroupType|Edm.String|Não|Identifica se o usuário ou grupo de destino é um Membro, Convidado, Grupo ou Parceiro. |
 |EventData|Código XML|Não|Transmite informações de acompanhamento sobre a ação de compartilhamento que ocorreu, como adicionar um usuário a um grupo ou conceder permissões de edição.|
+|SiteUrl|Edm.String|Não|A URL do site onde o arquivo ou pasta acessado pelo usuário está localizado.|
+|SourceRelativeUrl|Edm.String|Não|O URL da pasta que contém o arquivo acessado pelo usuário. A combinação dos valores dos parâmetros _SiteURL_, _SourceRelativeURL_ e _SourceFileName_ é igual ao valor da propriedade **ObjectID**, que é o nome do caminho completo do arquivo acessado pelo usuário.|
+|SourceFileName|Edm.String|Não|O nome do arquivo ou pasta acessado pelo usuário.|
+|SourceFileExtension|Edm.String|Não|A extensão do arquivo que foi acessado pelo usuário. Esta propriedade fica em branco se o objeto que foi acessado for uma pasta.|
+|UniqueSharingId|Edm.String|Não|O ID de compartilhamento exclusivo associado à operação de compartilhamento.|
 |||||
 
 ## <a name="sharepoint-schema"></a>Esquema do SharePoint
 
-Os eventos do SharePoint listados em [Pesquisar o log de auditoria do centro de conformidade e segurança](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance) (excluindo os eventos de arquivo e pasta) usam este esquema.
+Os eventos do SharePoint listados em [Pesquisar o log de auditoria no centro de conformidade](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance) (excluindo os eventos de arquivo e pasta) usam esse esquema.
 
 |**Parâmetro**|**Tipo**|**Obrigatório?**|**Descrição**|
 |:-----|:-----|:-----|:-----|
