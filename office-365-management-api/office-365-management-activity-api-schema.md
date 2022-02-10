@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: 7e605be800b8573e2b7be49c50ecd843d1ed8fb3
-ms.sourcegitcommit: c664ee51dfc7d4663e92883af3f0fec0e9af11c8
+ms.openlocfilehash: 69f901c5cb57dcb8563ddfd7c4180c658853a3fa
+ms.sourcegitcommit: 1e8e315dd4df7a465784ecf32d968e40721492ce
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/25/2022
-ms.locfileid: "62202226"
+ms.lasthandoff: 02/10/2022
+ms.locfileid: "62519772"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Esquema da API da Atividade de Gerenciamento do Office 365
 
@@ -187,11 +187,7 @@ Este artigo fornece os detalhes sobre o Esquema Comum, bem como esquemas especí
 |106|SecurityComplianceUserChange|Eventos relacionados à modificação ou exclusão de um usuário.|
 |107|ComplianceDLPExchangeClassification|Eventos de classificação do Exchange DLP.|
 |109|MipExactDataMatch|Eventos de classificação Exact Data Match (EDM).|
-|110|MSDEResponseActions|Eventos relacionados a ações de resposta no Microsoft Defender para Ponto de Extremidade.|
-|111|MSDEGeneralSettings|Eventos relacionados a ações de configurações gerais no Microsoft Defender para Ponto de Extremidade.|
-|112|MSDEIndicatorsSettings|Eventos relacionados a ações de indicador no Microsoft Defender para Ponto de Extremidade.|
 |113|MS365DCustomDetection|Eventos relacionados a ações de detecção personalizadas no Microsoft 365 Defender.|
-|114|MSDERolesSettings|Eventos relacionados a ações de funções no Microsoft Defender para Ponto de Extremidade.|
 |147|CoreReportingSettings|Relatórios de eventos de configurações.|
 ||||
 
