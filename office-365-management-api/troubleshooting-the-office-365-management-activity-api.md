@@ -7,12 +7,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: ade07767024abaa4db15de9b1822a3c72d19146e
-ms.sourcegitcommit: 94b0c0d30c07d510ee3686ca02ab16ddd0af35db
+ms.openlocfilehash: 1aa9e7fc234149089605075d9271388b45d6ee8d
+ms.sourcegitcommit: b7cb9907783d84fd46592097020e9dc35952ec40
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/15/2021
-ms.locfileid: "61521140"
+ms.lasthandoff: 03/12/2022
+ms.locfileid: "63448865"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Perguntas frequentes e Soluções de problemas da API da Atividade de Gestão do Office 365
 
@@ -59,7 +59,7 @@ O conteúdo está disponível para busca por meio da API por 7 dias após a noti
 
 **Posso consultar a API da Atividade de Gestão para uma ID de evento específico ou RecordType ou outras propriedades no blob de conteúdo?**
 
-Não. A API de Gerenciamento de Atividade fornece todos os detalhes do evento para um log específico. Pode ser usado para baixar todos os detalhes e, em seguida, você pode implementar sua própria lógica de consulta nos dados baixados; por exemplo, usando um aplicativo personalizado do ou uma ferramenta de terceiros.
+Não. A API de Atividade de Gerenciamento fornece todos os detalhes do evento para um log específico. Pode ser usado para baixar todos os detalhes e, em seguida, você pode implementar sua própria lógica de consulta nos dados baixados; por exemplo, usando um aplicativo personalizado do ou uma ferramenta de terceiros.
 
 **Como posso saber se estão precisos e completos os dados provenientes da minha solução de auditoria existente que coleta dados da API da Atividade de Gerenciamento?**
 
@@ -118,6 +118,9 @@ A categoria mais comum de perguntas que recebemos de clientes que usam produtos 
 
 Se você acabou de configurar um aplicativo que está tentando usar a API de Atividade de Gerenciamento e não estiver funcionando, certifique-se de que ativou o registro em log de auditoria unificada para a sua organização do Office 365. Para fazer isso, ative o log de auditoria do Office 365. Para obter instruções, confira [Ativar ou desativar a pesquisa de log de auditoria do Office 365](/microsoft-365/compliance/turn-audit-log-search-on-or-off).
 
+> [!NOTE]
+> A alteração da configuração do log de auditoria unificada pode levar até 60 minutos para entrar em vigor.
+
 Se a auditoria unificada não estiver habilitada, uma mensagem de erro aparecerá contendo a cadeia de caracteres a seguir: `Microsoft.Office.Compliance.Audit``.DataServiceException: Tenant <tenantID> does not exist.`
 
 ### <a name="connecting-to-the-api"></a>Como conectar-se com a API
@@ -164,7 +167,7 @@ $oauth = Invoke-RestMethod -Method Post -Uri $loginURL/$tenantdomain/oauth2/toke
 $headerParams = @{'Authorization'="$($oauth.token_type) $($oauth.access_token)"} 
 ```
 
-A variável `$oauth` conterá o objeto de resposta que tem várias propriedades, incluindo o token de acesso. Um exemplo de resposta:
+A variável `$oauth` conterá o objeto de resposta, que tem várias propriedades, incluindo o token de acesso. Aqui está um exemplo de uma resposta:
 
 ```json
 token_type     : Bearer
